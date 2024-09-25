@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Puntuación para Competencias</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Sistema de Puntuación para Competencias</h1>
+    <h2>Agregar Puntos</h2>
+    <form id="puntosForm">
+        <label for="equipo">Seleccionar Equipo:</label>
+        <select id="equipo">
+            <option value="Equipo A">Equipo A</option>
+            <option value="Equipo B">Equipo B</option>
+        </select>
+
+        <label for="disciplina">Seleccionar Disciplina:</label>
+        <select id="disciplina">
+            <option value="handball">Handball</option>
+            <option value="resistencia">Resistencia</option>
+            <option value="ajedrez">Ajedrez</option>
+        </select>
+
+        <label for="puntos">Puntos:</label>
+        <input type="number" id="puntos" required>
+
+        <button type="submit">Agregar Puntos</button>
+    </form>
+
+    <h2>Resultados</h2>
+    <div id="resultados">
+        <p id="resultadoEquipoA">Equipo A: 0 puntos</p>
+        <p id="resultadoEquipoB">Equipo B: 0 puntos</p>
+        <p id="equipoMayor">El equipo con más puntos en total es: -</p>
+        <p id="disciplinaMayor">La disciplina con la mayor puntuación individual es: -</p>
+    </div>
+
+    <script src="dist/bundle.js"></script>
+</body>
+</html>
