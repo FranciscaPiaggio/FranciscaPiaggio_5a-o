@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Sistema de Puntuación para Competencias</h1>
+    <h1>Sistema de Puntuación </h1>
     <h2>Agregar Puntos</h2>
     <form id="puntosForm">
-        <label for="equipo">Seleccionar Equipo:</label>
-        <select id="equipo">
-            <option value="Equipo A">Equipo A</option>
-            <option value="Equipo B">Equipo B</option>
+        <label for="Tribu">Seleccionar Tribu:</label>
+        <select id="Tribu">
+            <option value="Tribu Roja">Tribu Roja</option>
+            <option value="Tribu Negra">Tribu Negra</option>
         </select>
 
         <label for="disciplina">Seleccionar Disciplina:</label>
@@ -31,12 +31,12 @@
 
     <h2>Resultados</h2>
     <div id="resultados">
-        <p id="resultadoEquipoA">Equipo A: 0 puntos</p>
-        <p id="resultadoEquipoB">Equipo B: 0 puntos</p>
-        <p id="equipoMayor">El equipo con más puntos en total es: -</p>
+        <p id="resultadoTribuRoja">Tribu Roja: 0 puntos</p>
+        <p id="resultadoTribuNegra">Triu Negra: 0 puntos</p>
+        <p id="TribuMayor">La tribu con más puntos en total es: -</p>
         <p id="disciplinaMayor">La disciplina con la mayor puntuación individual es: -</p>
     </div>
 
-    <script src="dist/bundle.js"></script>
+    <script src="MarcadorDePuntos.js"></script>
 </body>
 </html>
