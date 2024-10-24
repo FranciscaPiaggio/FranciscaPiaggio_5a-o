@@ -1,50 +1,71 @@
-const tribus = [
-    { nombre: "Tribu Roja", puntos: { handball: 0, resistencia: 0, ajedrez: 0 } },
-    { nombre: "Tribu Negra", puntos: { handball: 0, resistencia: 0, ajedrez: 0 } }
-];
+interface Puntuacion {
+    puntos: number;
+}
 
-const competencia = {
-    agregarPuntos(equipo, disciplina, puntos) {
-        const tribu = tribus.find(t => t.nombre === equipo);
-        if (tribu) tribu.puntos[disciplina] += puntos;
-    },
-    obtenerTotalPuntos(equipo) {
-        const tribu = tribus.find(t => t.nombre === equipo);
-        return tribu ? Object.values(tribu.puntos).reduce((a, b) => a + b, 0) : 0;
-    },
-    equipoConMasPuntos() {
-        return tribus.reduce((prev, curr) => this.obtenerTotalPuntos(prev.nombre) > this.obtenerTotalPuntos(curr.nombre) ? prev : curr).nombre;
-    },
-     disciplinaConMayorPuntuacion() {
-        return tribus.reduce((prev, curr) => {
-            for (const d in curr.puntos) {
-                if (curr.puntos[d] > (prev.puntos || 0)) {
-                    prev = { disciplina: d, puntos: curr.puntos[d] };
-                }
-            }
-            return prev;
-        }, { disciplina: '', puntos: 0 });
-    }
+let tribuRoja: Puntuacion = {
+    puntos: 0
 };
 
-document.getElementById('puntosForm')!.addEventListener('submit', (event) => {
+let tribuNegra: Puntuacion = {
+    puntos: 0
+};
+
+const tribuSelect = document.getElementById('tribu') as HTMLSelectElement;
+const disciplinaSelect = document.getElementById('disciplina') as HTMLSelectElement;
+const puntosInput = document.getElementById('puntos') as HTMLInputElement;
+
+const resultadoTribuRoja = document.getElementById('resultadoTribuRoja') as HTMLElement;
+const resultadoTribuNegra = document.getElementById('resultadoTribuNegra') as HTMLElement;
+const tribuMayorOutput = document.getElementById('tribuMayor') as HTMLElement;
+
+const disciplinaMayorOutput = document.getElementById('disciplinaMayor') as HTMLElement;
+
+let puntuacionesDisciplina = {
+    handball: 0,
+    resistencia: 0,
+    ajedrez: 0
+};
+
+document.getElementById('puntosForm')?.addEventListener('submit', function(event) {
     event.preventDefault();
-    const equipo = (document.getElementById('equipo') as HTMLSelectElement).value;
-    const disciplina = (document.getElementById('disciplina') as HTMLSelectElement).value;
-    const puntos = parseInt((document.getElementById('puntos') as HTMLInputElement).value);
-
-    if (!isNaN(puntos)) {
-        competencia.agregarPuntos(equipo, disciplina, puntos);
-        const totalRoja = competencia.obtenerTotalPuntos("Tribu Roja");
-        const totalNegra = competencia.obtenerTotalPuntos("Tribu Negra");
-        const equipoMayor = competencia.equipoConMasPuntos();
-        const { disciplina: d, puntos: mp } = competencia.disciplinaConMayorPuntuacion();
-
-        document.getElementById('resultadoEquipoA')!.innerText = `Tribu Roja: ${totalRoja} puntos`;
-        document.getElementById('resultadoEquipoB')!.innerText = `Tribu Negra: ${totalNegra} puntos`;
-        document.getElementById('equipoMayor')!.innerText = `El equipo con más puntos es: ${equipoMayor}`;
-        document.getElementById('disciplinaMayor')!.innerText = `La disciplina con más puntos es: ${d} con ${mp} puntos.`;
-    } else {
-        alert("Por favor, introduce un número válido.");
-    }
+    agregarPuntos();
+    mostrarResultados();
 });
+
+function agregarPuntos(): void {
+    const tribu = tribuSelect.value;
+    const disciplina = disciplinaSelect.value;
+    const puntos = parseInt(puntosInput.value);
+
+    if (tribu === 'Roja') {
+        tribuRoja.puntos += puntos;
+    } else if (tribu === 'Negra') {
+        tribuNegra.puntos += puntos;
+    }
+
+    if (disciplina in puntuacionesDisciplina) {  
+        puntuacionesDisciplina[disciplina as keyof typeof puntuacionesDisciplina] += puntos;
+    } else {
+        console.error(`Disciplina "${disciplina}" no válida.`);
+    }
+}
+
+function mostrarResultados(): void {
+    resultadoTribuRoja.textContent = `Tribu Roja: ${tribuRoja.puntos} puntos`;
+    resultadoTribuNegra.textContent = `Tribu Negra: ${tribuNegra.puntos} puntos`;
+
+    
+    if (tribuRoja.puntos > tribuNegra.puntos) {
+        tribuMayorOutput.textContent = 'La tribu con más puntos es: Roja';
+    } else if (tribuNegra.puntos > tribuRoja.puntos) {
+        tribuMayorOutput.textContent = 'La tribu con más puntos es: Negra';
+    } else {
+        tribuMayorOutput.textContent = 'Ambas tribus tienen la misma cantidad de puntos';
+    }
+
+    
+    let disciplinaMayor = Object.keys(puntuacionesDisciplina).reduce((a, b) =>
+        puntuacionesDisciplina[a as keyof typeof puntuacionesDisciplina] > puntuacionesDisciplina[b as keyof typeof puntuacionesDisciplina] ? a : b
+    );
+    disciplinaMayorOutput.textContent = `Disciplina con más puntos: ${disciplinaMayor}`;
+}
