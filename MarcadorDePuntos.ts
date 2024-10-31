@@ -13,7 +13,7 @@ const resultadoTribuRoja = document.getElementById('resultadoTribuRoja') as HTML
 const resultadoTribuNegra = document.getElementById('resultadoTribuNegra') as HTMLElement;
 const tribuMayorOutput = document.getElementById('TribuMayor') as HTMLElement;
 const disciplinaMayorOutput = document.getElementById('disciplinaMayor') as HTMLElement;
-
+const de = 0;
 let puntuacionesDisciplina = {
     handball: 0,
     resistencia: 0,
