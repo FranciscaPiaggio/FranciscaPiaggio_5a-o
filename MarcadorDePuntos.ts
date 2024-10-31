@@ -2,13 +2,8 @@ interface Puntuacion {
     puntos: number;
 }
 
-let tribuRoja: Puntuacion = {
-    puntos: 0
-};
-
-let tribuNegra: Puntuacion = {
-    puntos: 0
-};
+let tribuRoja: Puntuacion = { puntos: 0 };
+let tribuNegra: Puntuacion = { puntos: 0 };
 
 const tribuSelect = document.getElementById('tribu') as HTMLSelectElement;
 const disciplinaSelect = document.getElementById('disciplina') as HTMLSelectElement;
@@ -16,8 +11,7 @@ const puntosInput = document.getElementById('puntos') as HTMLInputElement;
 
 const resultadoTribuRoja = document.getElementById('resultadoTribuRoja') as HTMLElement;
 const resultadoTribuNegra = document.getElementById('resultadoTribuNegra') as HTMLElement;
-const tribuMayorOutput = document.getElementById('tribuMayor') as HTMLElement;
-
+const tribuMayorOutput = document.getElementById('TribuMayor') as HTMLElement;
 const disciplinaMayorOutput = document.getElementById('disciplinaMayor') as HTMLElement;
 
 let puntuacionesDisciplina = {
@@ -46,15 +40,14 @@ function agregarPuntos() {
     if (disciplina in puntuacionesDisciplina) {  
         puntuacionesDisciplina[disciplina as keyof typeof puntuacionesDisciplina] += puntos;
     } else {
-        console.error('Disciplina' + disciplina + ' no válida.');
+        console.error('Disciplina ' + disciplina + ' no válida.');
     }
 }
 
 function mostrarResultados() {
-    resultadoTribuRoja.textContent = 'Tribu Roja: ' + tribuRoja.puntos + 'puntos';
-    resultadoTribuNegra.textContent = 'Tribu Negra: ' + tribuNegra.puntos + 'puntos';
+    resultadoTribuRoja.textContent = `Tribu Roja: ${tribuRoja.puntos} puntos`;
+    resultadoTribuNegra.textContent = `Tribu Negra: ${tribuNegra.puntos} puntos`;
 
-    
     if (tribuRoja.puntos > tribuNegra.puntos) {
         tribuMayorOutput.textContent = 'La tribu con más puntos es: Roja';
     } else if (tribuNegra.puntos > tribuRoja.puntos) {
@@ -63,9 +56,8 @@ function mostrarResultados() {
         tribuMayorOutput.textContent = 'Ambas tribus tienen la misma cantidad de puntos';
     }
 
-    
     let disciplinaMayor = Object.keys(puntuacionesDisciplina).reduce((a, b) =>
         puntuacionesDisciplina[a as keyof typeof puntuacionesDisciplina] > puntuacionesDisciplina[b as keyof typeof puntuacionesDisciplina] ? a : b
     );
-    disciplinaMayorOutput.textContent = 'Disciplina con más puntos:' + {disciplinaMayor};
+    disciplinaMayorOutput.textContent = 'Disciplina con más puntos: ' + disciplinaMayor;
 }

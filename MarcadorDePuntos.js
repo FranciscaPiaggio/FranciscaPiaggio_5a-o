@@ -1,16 +1,12 @@
 var _a;
-var tribuRoja = {
-    puntos: 0
-};
-var tribuNegra = {
-    puntos: 0
-};
+var tribuRoja = { puntos: 0 };
+var tribuNegra = { puntos: 0 };
 var tribuSelect = document.getElementById('tribu');
 var disciplinaSelect = document.getElementById('disciplina');
 var puntosInput = document.getElementById('puntos');
 var resultadoTribuRoja = document.getElementById('resultadoTribuRoja');
 var resultadoTribuNegra = document.getElementById('resultadoTribuNegra');
-var tribuMayorOutput = document.getElementById('tribuMayor');
+var tribuMayorOutput = document.getElementById('TribuMayor');
 var disciplinaMayorOutput = document.getElementById('disciplinaMayor');
 var puntuacionesDisciplina = {
     handball: 0,
@@ -36,12 +32,12 @@ function agregarPuntos() {
         puntuacionesDisciplina[disciplina] += puntos;
     }
     else {
-        console.error('Disciplina' + disciplina + ' no válida.');
+        console.error('Disciplina ' + disciplina + ' no válida.');
     }
 }
 function mostrarResultados() {
-    resultadoTribuRoja.textContent = 'Tribu Roja: ' + tribuRoja.puntos + 'puntos';
-    resultadoTribuNegra.textContent = 'Tribu Negra: ' + tribuNegra.puntos + 'puntos';
+    resultadoTribuRoja.textContent = "Tribu Roja: ".concat(tribuRoja.puntos, " puntos");
+    resultadoTribuNegra.textContent = "Tribu Negra: ".concat(tribuNegra.puntos, " puntos");
     if (tribuRoja.puntos > tribuNegra.puntos) {
         tribuMayorOutput.textContent = 'La tribu con más puntos es: Roja';
     }
@@ -54,5 +50,5 @@ function mostrarResultados() {
     var disciplinaMayor = Object.keys(puntuacionesDisciplina).reduce(function (a, b) {
         return puntuacionesDisciplina[a] > puntuacionesDisciplina[b] ? a : b;
     });
-    disciplinaMayorOutput.textContent = 'Disciplina con más puntos:' + { disciplinaMayor: disciplinaMayor };
+    disciplinaMayorOutput.textContent = 'Disciplina con más puntos: ' + disciplinaMayor;
 }

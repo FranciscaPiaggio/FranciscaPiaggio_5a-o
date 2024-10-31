@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Sistema de Puntuación </h1>
+    <h1>Sistema de Puntuación</h1>
     <h2>Agregar Puntos</h2>
     <form id="puntosForm">
-        <label for="Tribu">Seleccionar Tribu:</label>
-        <select id="Tribu">
+        <label for="tribu">Seleccionar Tribu:</label>
+        <select id="tribu">
             <option value="Tribu Roja">Tribu Roja</option>
             <option value="Tribu Negra">Tribu Negra</option>
         </select>
@@ -26,14 +26,14 @@
         <label for="puntos">Puntos:</label>
         <input type="number" id="puntos" required>
 
-        <button type="submit" onclick="mostrarResultados()">Agregar Puntos</button>
+        <button type="submit">Agregar Puntos</button>
     </form>
 
     <h2>Resultados</h2>
     <div id="resultados">
         <p id="resultadoTribuRoja">Tribu Roja: 0 puntos</p>
-        <p id="resultadoTribuNegra">Triu Negra: 0 puntos</p>
-        <p id="TribuMayor">La tribu con más puntos en total es: -</p>
+        <p id="resultadoTribuNegra">Tribu Negra: 0 puntos</p>
+        <p id="TribuMayor">La tribu con más puntos es: -</p>
         <p id="disciplinaMayor">La disciplina con la mayor puntuación individual es: -</p>
     </div>
 
