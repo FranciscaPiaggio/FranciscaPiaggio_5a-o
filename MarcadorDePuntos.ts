@@ -32,27 +32,27 @@ document.getElementById('puntosForm')?.addEventListener('submit', function(event
     mostrarResultados();
 });
 
-function agregarPuntos(): void {
+function agregarPuntos() {
     const tribu = tribuSelect.value;
     const disciplina = disciplinaSelect.value;
     const puntos = parseInt(puntosInput.value);
 
-    if (tribu === 'Roja') {
+    if (tribu === 'Tribu Roja') {
         tribuRoja.puntos += puntos;
-    } else if (tribu === 'Negra') {
+    } else if (tribu === 'Tribu Negra') {
         tribuNegra.puntos += puntos;
     }
 
     if (disciplina in puntuacionesDisciplina) {  
         puntuacionesDisciplina[disciplina as keyof typeof puntuacionesDisciplina] += puntos;
     } else {
-        console.error(`Disciplina "${disciplina}" no válida.`);
+        console.error('Disciplina' + disciplina + ' no válida.');
     }
 }
 
-function mostrarResultados(): void {
-    resultadoTribuRoja.textContent = `Tribu Roja: ${tribuRoja.puntos} puntos`;
-    resultadoTribuNegra.textContent = `Tribu Negra: ${tribuNegra.puntos} puntos`;
+function mostrarResultados() {
+    resultadoTribuRoja.textContent = 'Tribu Roja: ' + tribuRoja.puntos + 'puntos';
+    resultadoTribuNegra.textContent = 'Tribu Negra: ' + tribuNegra.puntos + 'puntos';
 
     
     if (tribuRoja.puntos > tribuNegra.puntos) {
@@ -67,5 +67,5 @@ function mostrarResultados(): void {
     let disciplinaMayor = Object.keys(puntuacionesDisciplina).reduce((a, b) =>
         puntuacionesDisciplina[a as keyof typeof puntuacionesDisciplina] > puntuacionesDisciplina[b as keyof typeof puntuacionesDisciplina] ? a : b
     );
-    disciplinaMayorOutput.textContent = `Disciplina con más puntos: ${disciplinaMayor}`;
+    disciplinaMayorOutput.textContent = 'Disciplina con más puntos:' + {disciplinaMayor};
 }
